@@ -1213,11 +1213,11 @@ document.getElementById('cs-fight-btn').addEventListener('click', () => {
 
 document.getElementById('cs-back-btn').addEventListener('click', () => {
     closeCS();
-    window.location.href = 'index.html';
+    window.location.href = '../../index.html';
 });
 
 document.getElementById('newbattle').addEventListener('click', () => { if (!state.menuVisible && !state.csVisible) startRound(true); });
-document.getElementById('menu-btn').addEventListener('click', () => { window.location.href = 'index.html'; });
+document.getElementById('menu-btn').addEventListener('click', () => { window.location.href = '../../index.html'; });
 document.getElementById('ai-toggle').addEventListener('click', function () {
     state.aiOn = !state.aiOn;
     this.textContent = '🤖 AI: ' + (state.aiOn ? 'ON' : 'OFF');
