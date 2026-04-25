@@ -1,3 +1,4 @@
+// menu.js
 let selectedMode = 'vs-ai';
 let currentDiff = 'normal';
 
@@ -26,33 +27,6 @@ function updateDiffUI() {
     diffLabel.textContent = DIFF_DESC[currentDiff];
 }
 
-diffOptions.forEach(opt => {
-    opt.addEventListener('click', () => {
-        currentDiff = opt.dataset.diff;
-        updateDiffUI();
-        playSelectSound();
-    });
-});
-
-modeBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        selectedMode = btn.dataset.mode;
-        modeBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        playSelectSound();
-    });
-});
-
-resetP1Btn.addEventListener('click', () => {
-    p1NameInput.value = 'KAZUYA';
-    playSelectSound();
-});
-
-resetP2Btn.addEventListener('click', () => {
-    p2NameInput.value = 'REIJI';
-    playSelectSound();
-});
-
 function playSelectSound() {
     try {
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -70,6 +44,37 @@ function playSelectSound() {
     } catch(e) { }
 }
 
+// Diff options
+diffOptions.forEach(opt => {
+    opt.addEventListener('click', () => {
+        currentDiff = opt.dataset.diff;
+        updateDiffUI();
+        playSelectSound();
+    });
+});
+
+// Mode options
+modeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        selectedMode = btn.dataset.mode;
+        modeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        playSelectSound();
+    });
+});
+
+// Reset buttons
+resetP1Btn.addEventListener('click', () => {
+    p1NameInput.value = 'KAZUYA';
+    playSelectSound();
+});
+
+resetP2Btn.addEventListener('click', () => {
+    p2NameInput.value = 'REIJI';
+    playSelectSound();
+});
+
+// Start Game button
 startBtn.addEventListener('click', () => {
     const settings = {
         p1Name: p1NameInput.value.trim().toUpperCase() || 'KAZUYA',
@@ -80,24 +85,28 @@ startBtn.addEventListener('click', () => {
     localStorage.setItem('battleArenaSettings', JSON.stringify(settings));
     playSelectSound();
     setTimeout(() => {
-        window.location.href = 'Assets\\Index\\game.html';
+        window.location.href = 'game.html';
     }, 100);
 });
 
+// How to Play button
 howToPlayBtn.addEventListener('click', () => {
     playSelectSound();
     setTimeout(() => {
-        window.location.href = 'h2p.html';
+        window.location.href = 'Assets\\Index\\h2p.html';
     }, 100);
 });
 
+// Credits button
 creditsBtn.addEventListener('click', () => {
     playSelectSound();
     setTimeout(() => {
-        window.location.href = 'credits.html';
+        window.location.href = 'Assets\\Index\\credits.html';
     }, 100);
 });
 
+// Initialize
 updateDiffUI();
+
 if (!p1NameInput.value) p1NameInput.value = 'KAZUYA';
 if (!p2NameInput.value) p2NameInput.value = 'REIJI';
