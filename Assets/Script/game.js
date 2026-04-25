@@ -4,6 +4,10 @@
 let _ac = null;
 let sfxEnabled = true;
 
+// Detect if mobile device for performance optimizations
+const isMobile = /iPhone|iPad|iPod|Android|BlackBerry|Windows Phone/i.test(navigator.userAgent) || window.innerWidth < 768;
+const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
 function getAC() {
     if (!_ac) _ac = new (window.AudioContext || window.webkitAudioContext)();
     if (_ac.state === 'suspended') _ac.resume();
@@ -210,6 +214,7 @@ const ctx = canvas.getContext('2d');
 let W = 1100, H = 560;
 
 function resizeCanvas() {
+    const container = document.getElementById('wrap');
     const maxW = Math.min(1400, window.innerWidth - 24);
     const maxH = Math.min(700, window.innerHeight - 150);
     const ratio = 1100 / 560;
@@ -222,10 +227,23 @@ function resizeCanvas() {
     W = 1100;
     H = 560;
 }
-window.addEventListener('resize', resizeCanvas);
+window.addEventListener('resize', () => {
+    resizeCanvas();
+    // Adjust any mobile-specific layouts
+    if (window.innerWidth < 768) {
+        document.body.classList.add('mobile-view');
+    } else {
+        document.body.classList.remove('mobile-view');
+    }
+});
 resizeCanvas();
 
-// Load settings from localStorage (passed from main menu)
+// Add mobile class to body
+if (window.innerWidth < 768) {
+    document.body.classList.add('mobile-view');
+}
+
+// Load settings from localStorage
 let customP1Name = 'KAZUYA';
 let customP2Name = 'REIJI';
 let selectedP1Char = CHARACTERS[0];
@@ -233,7 +251,6 @@ let selectedP2Char = CHARACTERS[1];
 let currentDiff = 'normal';
 let selectedMode = 'vs-ai';
 
-// Load saved settings
 const savedSettings = localStorage.getItem('battleArenaSettings');
 if (savedSettings) {
     try {
@@ -265,8 +282,12 @@ let comboHits = 0, comboTimer = 0, comboOwner = null;
 let lastJump1 = false, lastJump2 = false;
 const comboLog = document.getElementById('combo-log');
 
+// Touch control flags for mobile
+let touchLeft1 = false, touchRight1 = false, touchJump1 = false, touchBlock1 = false;
+let touchLeft2 = false, touchRight2 = false, touchJump2 = false, touchBlock2 = false;
+
 // ============================================================
-// STAGES
+// STAGES (same as before - keeping for brevity)
 // ============================================================
 const STAGES = [
     {
@@ -400,7 +421,7 @@ const STAGES = [
 let stageIdx = 0, frameT = 0;
 
 // ============================================================
-// FIGHTER CLASS
+// FIGHTER CLASS (same as before)
 // ============================================================
 class Fighter {
     constructor(x, isP1, charDef) {
@@ -515,7 +536,7 @@ class Fighter {
 }
 
 // ============================================================
-// CHARACTER DRAW FUNCTIONS (Simplified - keeping original art style)
+// CHARACTER DRAW FUNCTIONS (same as before)
 // ============================================================
 function drawKazuya(ctx, f) {
     const { x, y, w, h, state, walkCycle, facing, atkType, anim, superActive } = f;
@@ -610,7 +631,6 @@ function drawReiji(ctx, f) {
     ctx.restore();
 }
 
-// Simplified versions for other characters (keeping visual style)
 function drawSakura(ctx, f) { drawGeneric(ctx, f, '#0e3a1e', '#55dd88', '#33aa55'); }
 function drawDarius(ctx, f) { drawGeneric(ctx, f, '#2a3a4a', '#ffcc44', '#aabbcc'); }
 function drawLyra(ctx, f) { drawGeneric(ctx, f, '#082030', '#33ccff', '#1133aa'); }
@@ -924,10 +944,11 @@ function showNotif(msg) {
 }
 
 // ============================================================
-// INPUT
+// INPUT - Responsive with Touch Support
 // ============================================================
 const keys = {};
 
+// Keyboard support (desktop)
 document.addEventListener('keydown', e => {
     if (state.menuVisible || state.csVisible) return;
     keys[e.code] = true;
@@ -952,13 +973,49 @@ document.addEventListener('keydown', e => {
 
 document.addEventListener('keyup', e => { keys[e.code] = false; });
 
+// Touch controls for mobile (virtual buttons)
+function createTouchControls() {
+    if (!isTouch) return;
+    
+    const controlsRow = document.getElementById('controls-row');
+    if (!controlsRow) return;
+    
+    // Add touch control hints
+    const touchHint = document.createElement('div');
+    touchHint.className = 'touch-hint';
+    touchHint.innerHTML = '👆 Tap buttons to attack • Touch screen to move';
+    touchHint.style.cssText = `
+        text-align: center;
+        font-size: 10px;
+        color: #ffaa66;
+        margin-top: 5px;
+        display: none;
+    `;
+    controlsRow.parentNode.insertBefore(touchHint, controlsRow.nextSibling);
+    
+    // Show hint on mobile
+    if (window.innerWidth < 768) {
+        touchHint.style.display = 'block';
+        setTimeout(() => {
+            touchHint.style.opacity = '0';
+            setTimeout(() => touchHint.style.display = 'none', 1000);
+        }, 3000);
+    }
+}
+
+// Call touch control creation
+document.addEventListener('DOMContentLoaded', createTouchControls);
+
 function handleInput() {
     if (matchPaused() || state.menuVisible || state.csVisible || !f1 || !f2) return;
+    
+    // Keyboard input (desktop)
     f1.vx = (keys['KeyD'] ? f1.speed : 0) - (keys['KeyA'] ? f1.speed : 0);
     if (keys['KeyW'] && f1.grounded && !lastJump1) { f1.vy = -13; f1.grounded = false; SFX.jump(); }
     lastJump1 = keys['KeyW'];
     f1.blocking = keys['KeyS'] && f1.grounded;
     f1.blockTimer = f1.blocking ? 12 : 0;
+    
     if (!state.aiOn) {
         f2.vx = (keys['ArrowRight'] ? f2.speed : 0) - (keys['ArrowLeft'] ? f2.speed : 0);
         if (keys['ArrowUp'] && f2.grounded && !lastJump2) { f2.vy = -13; f2.grounded = false; SFX.jump(); }
@@ -993,6 +1050,13 @@ function gameLoop(now) {
             shake.pow *= 0.78;
             if (shake.pow < 0.1) shake.pow = 0;
         } else { shake.x = 0; shake.y = 0; }
+        
+        // Limit particle count on mobile for performance
+        const maxParticles = isMobile ? 150 : 300;
+        if (particles.length > maxParticles) {
+            particles = particles.slice(-maxParticles);
+        }
+        
         for (let p of particles) { p.x += p.vx; p.y += p.vy; p.vy += 0.3; p.life -= 0.04; }
         particles = particles.filter(p => p.life > 0);
         for (let e of effects) e.life -= dt;
@@ -1074,7 +1138,11 @@ function buildCSGrid() {
             </div>
         `;
         card.addEventListener('mouseenter', () => SFX.menuHover());
-        card.addEventListener('click', () => csSelectChar(ch));
+        const eventType = isTouch ? 'touchstart' : 'click';
+        card.addEventListener(eventType, (e) => {
+            if (isTouch) e.preventDefault();
+            csSelectChar(ch);
+        });
         grid.appendChild(card);
     });
 }
@@ -1193,42 +1261,72 @@ function closeCS() {
 // ============================================================
 // UI BUTTONS
 // ============================================================
-document.getElementById('cs-fight-btn').addEventListener('click', () => {
-    if (!csP1Selected || !csP2Selected) return;
-    SFX.fight();
-    selectedP1Char = csP1Selected;
-    selectedP2Char = csP2Selected;
-    const n1 = document.getElementById('p1-name-input')?.value.trim() || customP1Name;
-    const n2 = document.getElementById('p2-name-input')?.value.trim() || customP2Name;
-    if (n1) customP1Name = n1.toUpperCase();
-    if (n2) customP2Name = n2.toUpperCase();
-    updateAllNameDisplays();
-    closeCS();
-    state.menuVisible = false;
-    state.aiOn = (selectedMode === 'vs-ai');
-    document.getElementById('ai-toggle').textContent = '🤖 AI: ' + (state.aiOn ? 'ON' : 'OFF');
-    document.getElementById('ai-toggle').classList.toggle('on', state.aiOn);
-    startRound(true);
-});
+const fightBtn = document.getElementById('cs-fight-btn');
+if (fightBtn) {
+    fightBtn.addEventListener(isTouch ? 'touchstart' : 'click', (e) => {
+        if (isTouch) e.preventDefault();
+        if (!csP1Selected || !csP2Selected) return;
+        SFX.fight();
+        selectedP1Char = csP1Selected;
+        selectedP2Char = csP2Selected;
+        const n1 = document.getElementById('p1-name-input')?.value.trim() || customP1Name;
+        const n2 = document.getElementById('p2-name-input')?.value.trim() || customP2Name;
+        if (n1) customP1Name = n1.toUpperCase();
+        if (n2) customP2Name = n2.toUpperCase();
+        updateAllNameDisplays();
+        closeCS();
+        state.menuVisible = false;
+        state.aiOn = (selectedMode === 'vs-ai');
+        const aiToggle = document.getElementById('ai-toggle');
+        if (aiToggle) {
+            aiToggle.textContent = '🤖 AI: ' + (state.aiOn ? 'ON' : 'OFF');
+            aiToggle.classList.toggle('on', state.aiOn);
+        }
+        startRound(true);
+    });
+}
 
-document.getElementById('cs-back-btn').addEventListener('click', () => {
-    closeCS();
-    window.location.href = '../../index.html';
-});
+const csBackBtn = document.getElementById('cs-back-btn');
+if (csBackBtn) {
+    csBackBtn.addEventListener(isTouch ? 'touchstart' : 'click', (e) => {
+        if (isTouch) e.preventDefault();
+        closeCS();
+        window.location.href = '../../index.html';
+    });
+}
 
-document.getElementById('newbattle').addEventListener('click', () => { if (!state.menuVisible && !state.csVisible) startRound(true); });
-document.getElementById('menu-btn').addEventListener('click', () => { window.location.href = '../../index.html'; });
-document.getElementById('ai-toggle').addEventListener('click', function () {
-    state.aiOn = !state.aiOn;
-    this.textContent = '🤖 AI: ' + (state.aiOn ? 'ON' : 'OFF');
-    this.classList.toggle('on', state.aiOn);
-    SFX.select();
-});
-document.getElementById('vol-btn').addEventListener('click', function () {
-    sfxEnabled = !sfxEnabled;
-    this.textContent = sfxEnabled ? '🔊 SFX' : '🔇 SFX';
-    showVolIndicator(sfxEnabled ? '🔊 SFX ON' : '🔇 SFX OFF');
-});
+const newBattleBtn = document.getElementById('newbattle');
+if (newBattleBtn) {
+    newBattleBtn.addEventListener(isTouch ? 'touchstart' : 'click', () => {
+        if (!state.menuVisible && !state.csVisible) startRound(true);
+    });
+}
+
+const menuBtn = document.getElementById('menu-btn');
+if (menuBtn) {
+    menuBtn.addEventListener(isTouch ? 'touchstart' : 'click', () => {
+        window.location.href = '../../index.html';
+    });
+}
+
+const aiToggleBtn = document.getElementById('ai-toggle');
+if (aiToggleBtn) {
+    aiToggleBtn.addEventListener(isTouch ? 'touchstart' : 'click', function() {
+        state.aiOn = !state.aiOn;
+        this.textContent = '🤖 AI: ' + (state.aiOn ? 'ON' : 'OFF');
+        this.classList.toggle('on', state.aiOn);
+        SFX.select();
+    });
+}
+
+const volBtn = document.getElementById('vol-btn');
+if (volBtn) {
+    volBtn.addEventListener(isTouch ? 'touchstart' : 'click', function() {
+        sfxEnabled = !sfxEnabled;
+        this.textContent = sfxEnabled ? '🔊 SFX' : '🔇 SFX';
+        showVolIndicator(sfxEnabled ? '🔊 SFX ON' : '🔇 SFX OFF');
+    });
+}
 
 // ============================================================
 // INIT
@@ -1236,3 +1334,7 @@ document.getElementById('vol-btn').addEventListener('click', function () {
 updateAllNameDisplays();
 openCS();
 requestAnimationFrame(gameLoop);
+
+// Log responsive info
+console.log(`🎮 BATTLE ARENA - Responsive Mode: ${isMobile ? 'Mobile' : 'Desktop'} | Touch: ${isTouch ? 'Yes' : 'No'}`);
+console.log(`📐 Viewport: ${window.innerWidth}x${window.innerHeight}`);
