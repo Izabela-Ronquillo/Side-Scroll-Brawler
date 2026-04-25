@@ -1,3 +1,7 @@
+/* ============================================
+   FULLY RESPONSIVE CSS - MOBILE FIRST
+   ============================================ */
+
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +15,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: clamp(0.5rem, 3vw, 2rem);
   position: relative;
   overflow-x: hidden;
 }
@@ -34,7 +38,7 @@ body {
   background-image: 
     linear-gradient(rgba(255, 100, 50, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 100, 50, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
+  background-size: clamp(20px, 5vw, 50px) clamp(20px, 5vw, 50px);
 }
 
 .glow-orb {
@@ -46,16 +50,16 @@ body {
 }
 
 .orb1 {
-  width: 500px;
-  height: 500px;
+  width: clamp(200px, 40vw, 500px);
+  height: clamp(200px, 40vw, 500px);
   background: radial-gradient(circle, #ff4400, transparent);
   top: -150px;
   left: -150px;
 }
 
 .orb2 {
-  width: 400px;
-  height: 400px;
+  width: clamp(180px, 35vw, 400px);
+  height: clamp(180px, 35vw, 400px);
   background: radial-gradient(circle, #8844ff, transparent);
   bottom: -100px;
   right: -100px;
@@ -63,8 +67,8 @@ body {
 }
 
 .orb3 {
-  width: 300px;
-  height: 300px;
+  width: clamp(150px, 30vw, 300px);
+  height: clamp(150px, 30vw, 300px);
   background: radial-gradient(circle, #00aaff, transparent);
   top: 50%;
   left: 50%;
@@ -83,22 +87,23 @@ body {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .guide {
   background: rgba(5, 3, 15, 0.85);
   backdrop-filter: blur(20px);
-  border-radius: 32px;
+  border-radius: clamp(1rem, 4vw, 2rem);
   border: 1px solid rgba(255, 100, 50, 0.3);
   overflow: hidden;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 150, 50, 0.1) inset;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 150, 50, 0.1) inset;
 }
 
 /* ========== HEADER ========== */
 .header {
   background: linear-gradient(135deg, rgba(20, 10, 35, 0.95), rgba(10, 5, 20, 0.95));
-  padding: 2rem;
+  padding: clamp(1rem, 5vw, 2rem);
   text-align: center;
   border-bottom: 2px solid #ff6600;
   position: relative;
@@ -109,11 +114,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: clamp(0.5rem, 3vw, 2rem);
   font-family: 'Orbitron', monospace;
-  font-size: 3rem;
+  font-size: clamp(1.5rem, 6vw, 3rem);
   font-weight: 900;
-  letter-spacing: 8px;
+  letter-spacing: clamp(2px, 1vw, 8px);
+  flex-wrap: wrap;
 }
 
 .vs-left, .vs-right {
@@ -122,10 +128,11 @@ body {
   background-clip: text;
   color: transparent;
   text-shadow: 0 0 30px rgba(255, 68, 0, 0.5);
+  font-size: clamp(1.2rem, 5vw, 2.5rem);
 }
 
 .vs-center {
-  font-size: 2.5rem;
+  font-size: clamp(1.2rem, 5vw, 2rem);
   color: #ffaa44;
   animation: pulse 1.5s infinite;
 }
@@ -137,8 +144,8 @@ body {
 
 .header-stats {
   margin-top: 0.5rem;
-  font-size: 0.7rem;
-  letter-spacing: 4px;
+  font-size: clamp(0.5rem, 2vw, 0.7rem);
+  letter-spacing: clamp(2px, 1vw, 4px);
   color: #aa88ff;
 }
 
@@ -146,64 +153,77 @@ body {
 .info-banner {
   display: flex;
   justify-content: center;
-  gap: 3rem;
-  padding: 1rem 2rem;
+  gap: clamp(1rem, 4vw, 3rem);
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 2rem);
   background: rgba(0, 0, 0, 0.5);
   border-bottom: 1px solid rgba(255, 100, 50, 0.2);
   flex-wrap: wrap;
 }
 
 .info-item {
-  font-size: 0.8rem;
+  font-size: clamp(0.65rem, 2.5vw, 0.8rem);
   font-weight: bold;
   letter-spacing: 1px;
   color: #ffcc88;
+  white-space: nowrap;
+}
+
+@media (max-width: 550px) {
+  .info-item { white-space: normal; text-align: center; }
 }
 
 .info-item span {
   margin-right: 8px;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
 }
 
 /* ========== SECTION TITLES ========== */
 .section-title {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin: 2rem 0 1.2rem 0;
-  padding: 0 1rem;
+  gap: clamp(0.5rem, 2vw, 1rem);
+  margin: clamp(1rem, 4vw, 2rem) 0 clamp(0.8rem, 2vw, 1.2rem) 0;
+  padding: 0 clamp(0.5rem, 2vw, 1rem);
+  flex-wrap: wrap;
 }
 
 .title-icon {
-  font-size: 1.8rem;
+  font-size: clamp(1.2rem, 5vw, 1.8rem);
   filter: drop-shadow(0 0 5px #ff6600);
 }
 
 .section-title h2 {
   font-family: 'Orbitron', monospace;
-  font-size: 1.3rem;
-  letter-spacing: 3px;
+  font-size: clamp(0.9rem, 4vw, 1.3rem);
+  letter-spacing: clamp(1px, 0.5vw, 3px);
   color: #ffaa55;
+}
+
+@media (max-width: 500px) {
+  .section-title h2 { white-space: normal; text-align: center; }
+  .title-line { display: none; }
+  .section-title { justify-content: center; }
 }
 
 .title-line {
   flex: 1;
   height: 2px;
   background: linear-gradient(90deg, #ff6600, transparent);
+  min-width: 40px;
 }
 
 /* ========== MODES GRID ========== */
 .modes-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  padding: 0 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(0.8rem, 3vw, 1.5rem);
+  padding: 0 clamp(0.5rem, 2vw, 1rem);
 }
 
 .mode-card {
   background: linear-gradient(135deg, rgba(30, 20, 50, 0.6), rgba(15, 10, 30, 0.6));
-  border-radius: 20px;
-  padding: 1.5rem;
+  border-radius: clamp(1rem, 3vw, 1.5rem);
+  padding: clamp(0.8rem, 3vw, 1.5rem);
   border: 1px solid rgba(255, 100, 50, 0.2);
   transition: all 0.3s ease;
   cursor: pointer;
@@ -216,19 +236,19 @@ body {
 }
 
 .mode-icon {
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 6vw, 2.5rem);
   margin-bottom: 0.5rem;
 }
 
 .mode-card h3 {
   font-family: 'Orbitron', monospace;
-  font-size: 1.2rem;
+  font-size: clamp(0.9rem, 3.5vw, 1.2rem);
   color: #ffaa66;
   margin-bottom: 0.5rem;
 }
 
 .mode-card p {
-  font-size: 0.8rem;
+  font-size: clamp(0.7rem, 2.5vw, 0.8rem);
   color: #bbb;
   line-height: 1.4;
 }
@@ -237,7 +257,7 @@ body {
   display: flex;
   gap: 0.5rem;
   margin-top: 1rem;
-  font-size: 0.6rem;
+  font-size: clamp(0.5rem, 2vw, 0.6rem);
   flex-wrap: wrap;
 }
 
@@ -253,17 +273,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-  padding: 1rem;
+  gap: clamp(0.8rem, 3vw, 2rem);
+  padding: clamp(0.5rem, 2vw, 1rem);
   flex-wrap: wrap;
 }
 
 .player-controls {
   flex: 1;
-  min-width: 280px;
+  min-width: 260px;
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(20, 10, 35, 0.5));
-  border-radius: 24px;
-  padding: 1.2rem;
+  border-radius: clamp(1rem, 3vw, 1.5rem);
+  padding: clamp(0.8rem, 3vw, 1.2rem);
   border: 1px solid rgba(255, 100, 50, 0.2);
   transition: all 0.3s;
 }
@@ -284,7 +304,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: clamp(0.5rem, 2vw, 1rem);
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid rgba(255, 100, 50, 0.3);
@@ -292,24 +312,25 @@ body {
 }
 
 .player-icon {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
 }
 
 .player-name {
   font-family: 'Orbitron', monospace;
   font-weight: bold;
   letter-spacing: 2px;
+  font-size: clamp(0.8rem, 3vw, 1rem);
 }
 
 .p1-controls .player-name { color: #ff5533; }
 .p2-controls .player-name { color: #4488ff; }
 
 .player-side {
-  font-size: 0.7rem;
+  font-size: clamp(0.6rem, 2vw, 0.7rem);
   background: rgba(255, 255, 255, 0.1);
   padding: 0.2rem 0.6rem;
   border-radius: 20px;
-  color:white;
+  color: white;
 }
 
 .ctrl-group {
@@ -322,20 +343,20 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.8rem;
+  gap: clamp(0.4rem, 2vw, 0.8rem);
 }
 
 .ctrl-btn {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: clamp(0.3rem, 1.5vw, 0.6rem);
   background: rgba(10, 8, 20, 0.8);
-  padding: 0.5rem 1rem;
+  padding: clamp(0.3rem, 1.5vw, 0.5rem) clamp(0.6rem, 2vw, 1rem);
   border-radius: 40px;
   border: 1px solid #333;
   transition: all 0.2s;
   cursor: pointer;
-  color:white;
+  color: white;
 }
 
 .ctrl-btn:hover {
@@ -361,50 +382,56 @@ body {
 kbd {
   background: #1a1a2a;
   border-radius: 10px;
-  padding: 5px 12px;
+  padding: clamp(3px, 1.5vw, 5px) clamp(8px, 2vw, 12px);
   font-family: monospace;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: clamp(0.7rem, 2.5vw, 0.9rem);
   color: #ffdd99;
   box-shadow: inset 0 1px 0 #4a4a6a, 0 2px 0 #000;
   border: 1px solid #5a5580;
-  min-width: 50px;
+  min-width: 40px;
   text-align: center;
   transition: all 0.05s linear;
 }
 
 .ctrl-btn span {
-  font-size: 0.7rem;
+  font-size: clamp(0.55rem, 2vw, 0.7rem);
   font-weight: bold;
 }
 
 .vs-divider-small {
   font-family: 'Orbitron', monospace;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 4vw, 1.5rem);
   font-weight: bold;
   color: #ffaa44;
   text-shadow: 0 0 10px #ff6600;
   animation: pulse 1.5s infinite;
 }
 
+@media (max-width: 768px) {
+  .vs-divider-small { display: none; }
+}
+
 /* ========== GLOBAL CONTROLS ========== */
 .global-controls {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: clamp(0.8rem, 3vw, 2rem);
   flex-wrap: wrap;
-  padding: 1rem;
-  margin: 1rem 0;
+  padding: clamp(0.6rem, 2vw, 1rem);
+  margin: 0.5rem 0;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 60px;
-  color:white;
+  color: white;
 }
 
 .global-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.75rem;
+  font-size: clamp(0.6rem, 2vw, 0.75rem);
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .badge-gold {
@@ -413,23 +440,24 @@ kbd {
   padding: 0.2rem 0.8rem;
   border-radius: 20px;
   font-weight: bold;
+  font-size: clamp(0.5rem, 2vw, 0.7rem);
 }
 
 /* ========== ROSTER ========== */
 .roster {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 1rem;
-  padding: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  gap: clamp(0.5rem, 2vw, 1rem);
+  padding: clamp(0.5rem, 2vw, 1rem);
 }
 
 .fighter-card {
   background: linear-gradient(135deg, rgba(20, 15, 40, 0.7), rgba(10, 8, 25, 0.7));
   border-radius: 16px;
-  padding: 1rem;
+  padding: clamp(0.6rem, 2vw, 1rem);
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: clamp(0.5rem, 2vw, 1rem);
   border: 1px solid rgba(255, 100, 50, 0.2);
   transition: all 0.3s;
   cursor: pointer;
@@ -442,7 +470,7 @@ kbd {
 }
 
 .fighter-avatar {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
 }
 
 .fighter-info {
@@ -452,12 +480,12 @@ kbd {
 .fighter-name {
   font-family: 'Orbitron', monospace;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: clamp(0.7rem, 2.5vw, 0.9rem);
   color: #ffaa66;
 }
 
 .fighter-title {
-  font-size: 0.6rem;
+  font-size: clamp(0.5rem, 1.8vw, 0.6rem);
   color: #888;
   letter-spacing: 1px;
 }
@@ -466,10 +494,11 @@ kbd {
   display: flex;
   gap: 0.5rem;
   margin-top: 0.3rem;
+  flex-wrap: wrap;
 }
 
 .stat {
-  font-size: 0.65rem;
+  font-size: clamp(0.55rem, 2vw, 0.65rem);
   background: rgba(0, 0, 0, 0.5);
   padding: 0.1rem 0.4rem;
   border-radius: 10px;
@@ -482,19 +511,19 @@ kbd {
 /* ========== TIPS SECTION ========== */
 .tips-section {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  padding: 1rem;
-  margin: 1rem 0;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: clamp(0.5rem, 2vw, 1rem);
+  padding: clamp(0.5rem, 2vw, 1rem);
+  margin: 0.5rem 0;
 }
 
 .tip-card {
   background: rgba(0, 0, 0, 0.4);
   border-radius: 16px;
-  padding: 1rem;
+  padding: clamp(0.6rem, 2vw, 1rem);
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: clamp(0.5rem, 2vw, 1rem);
   border-left: 3px solid #ff6600;
   transition: all 0.3s;
   cursor: pointer;
@@ -506,47 +535,57 @@ kbd {
 }
 
 .tip-icon {
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 4vw, 2rem);
 }
 
 .tip-content h4 {
-  font-size: 0.8rem;
+  font-size: clamp(0.65rem, 2.5vw, 0.8rem);
   color: #ffaa66;
   margin-bottom: 0.2rem;
 }
 
 .tip-content p {
-  font-size: 0.7rem;
+  font-size: clamp(0.55rem, 2vw, 0.7rem);
   color: #aaa;
 }
 
-/* ========== ACTION BUTTON ========== */
+/* ========== ACTION BUTTONS ========== */
 .action-area {
   display: flex;
   justify-content: center;
-  padding: 1.5rem;
+  gap: clamp(0.8rem, 3vw, 1.5rem);
+  padding: clamp(0.8rem, 3vw, 1.5rem);
+  flex-wrap: wrap;
 }
 
 .fight-button {
   position: relative;
   background: linear-gradient(135deg, #ff6600, #cc2200);
   border: none;
-  padding: 1rem 3rem;
+  padding: clamp(0.6rem, 2.5vw, 1rem) clamp(1.2rem, 4vw, 3rem);
   border-radius: 60px;
   cursor: pointer;
   overflow: hidden;
   transition: all 0.3s;
   box-shadow: 0 5px 20px rgba(255, 68, 0, 0.4);
+  flex: 0 1 auto;
+  min-width: 180px;
 }
 
 .btn-text {
   font-family: 'Orbitron', monospace;
-  font-size: 1.2rem;
+  font-size: clamp(0.7rem, 2.5vw, 0.9rem);
   font-weight: bold;
   color: #fff;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   position: relative;
   z-index: 1;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .btn-text { white-space: normal; font-size: 0.65rem; }
+  .fight-button { min-width: 140px; }
 }
 
 .btn-glow {
@@ -568,36 +607,126 @@ kbd {
   left: 100%;
 }
 
+.credits-button {
+  background: linear-gradient(135deg, #8844ff, #4400cc);
+  box-shadow: 0 5px 20px rgba(136, 68, 255, 0.4);
+}
+
+.credits-button:hover {
+  box-shadow: 0 0 30px #8844ff;
+}
+
 /* ========== FOOTER ========== */
 .footer {
   display: flex;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  font-size: 0.65rem;
+  padding: clamp(0.6rem, 2vw, 1rem) clamp(1rem, 3vw, 2rem);
+  font-size: clamp(0.5rem, 1.8vw, 0.65rem);
   color: #665588;
   border-top: 1px solid rgba(255, 100, 50, 0.2);
   flex-wrap: wrap;
   gap: 0.5rem;
+  text-align: center;
 }
 
-/* ========== RESPONSIVE ========== */
-@media (max-width: 900px) {
+/* ========== RESPONSIVE BREAKPOINTS ========== */
+
+/* Tablet */
+@media (max-width: 1024px) {
   body { padding: 1rem; }
   .controls-wrapper { flex-direction: column; }
-  .vs-divider-small { display: none; }
-  .tips-section { grid-template-columns: 1fr; }
-  .modes-grid { grid-template-columns: 1fr; }
   .roster { grid-template-columns: repeat(2, 1fr); }
-  .vs-divider { font-size: 2rem; gap: 1rem; }
-  .vs-left, .vs-right { font-size: 2rem; }
 }
 
-@media (max-width: 500px) {
+/* Small Tablet / Large Phone */
+@media (max-width: 768px) {
+  .modes-grid { grid-template-columns: 1fr; }
+  .tips-section { grid-template-columns: 1fr; }
+  .global-controls { flex-direction: column; align-items: center; border-radius: 20px; }
+  .action-area { flex-direction: column; align-items: center; }
+  .fight-button { width: 100%; max-width: 280px; }
+  .vs-divider { font-size: 2rem; gap: 1rem; }
+  .vs-left, .vs-right { font-size: 1.5rem; }
+  .roster { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+}
+
+/* Mobile */
+@media (max-width: 550px) {
   .roster { grid-template-columns: 1fr; }
   .info-banner { flex-direction: column; align-items: center; gap: 0.5rem; }
-  .global-controls { flex-direction: column; align-items: center; border-radius: 20px; }
-  .footer { flex-direction: column; text-align: center; }
-  .section-title h2 { font-size: 1rem; }
-  .btn-text { font-size: 0.9rem; }
-  .fight-button { padding: 0.8rem 1.5rem; }
+  .footer { flex-direction: column; align-items: center; }
+  .player-controls { min-width: 100%; }
+  .vs-divider { flex-direction: column; gap: 0.3rem; }
+  .vs-center { order: 2; }
+  .vs-left { order: 1; }
+  .vs-right { order: 3; }
+}
+
+/* Small Mobile */
+@media (max-width: 380px) {
+  body { padding: 0.5rem; }
+  .ctrl-row { gap: 0.4rem; }
+  .ctrl-btn { padding: 0.3rem 0.5rem; }
+  kbd { min-width: 32px; font-size: 0.6rem; padding: 3px 6px; }
+  .ctrl-btn span { font-size: 0.5rem; }
+  .fighter-card { flex-direction: column; text-align: center; }
+  .fighter-stats { justify-content: center; }
+}
+
+/* Landscape Mode on Mobile */
+@media (max-width: 900px) and (orientation: landscape) {
+  body { padding: 0.5rem; }
+  .content { padding: 0.8rem; }
+  .roster { grid-template-columns: repeat(3, 1fr); }
+  .tips-section { grid-template-columns: repeat(3, 1fr); }
+  .modes-grid { grid-template-columns: repeat(2, 1fr); }
+  .header { padding: 1rem; }
+  .section-title { margin: 1rem 0 0.8rem 0; }
+}
+
+/* Ultra-wide Screens */
+@media (min-width: 1920px) {
+  .guide-container { max-width: 1600px; }
+  .roster { grid-template-columns: repeat(3, 1fr); }
+  .tips-section { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Touch Device Optimization */
+@media (hover: none) and (pointer: coarse) {
+  .mode-card:hover, 
+  .fighter-card:hover, 
+  .tip-card:hover,
+  .ctrl-btn:hover {
+    transform: none;
+  }
+  
+  .ctrl-btn:active {
+    transform: scale(0.95);
+  }
+  
+  .fight-button:active {
+    transform: scale(0.98);
+  }
+  
+  .mode-card:active {
+    transform: translateY(-2px);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .bg-animation, .btn-glow, .glow-orb {
+    display: none;
+  }
+  
+  .guide {
+    background: white;
+    color: black;
+    box-shadow: none;
+  }
+  
+  .fight-button {
+    background: #ccc;
+    color: black;
+  }
 }
