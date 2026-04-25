@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>BATTLE ARENA — MAIN MENU</title>
+<link rel="stylesheet" href="Assets/CSS/style.css">
+</head>
+<body>
+<div id="main-menu" class="menu-overlay">
+    <div class="menu-panel">
+        <div class="menu-title">BATTLE ARENA</div>
+        <div class="menu-vs">ULTIMATE FIGHTERS</div>
+        
+        <div class="name-editor">
+            <div class="name-row">
+                <span class="name-label">🔥 P1 NAME:</span>
+                <input type="text" id="p1-name-input" class="name-input" maxlength="18" placeholder="KAZUYA" value="KAZUYA">
+                <button id="reset-p1-name" class="reset-name">RESET</button>
+            </div>
+            <div class="name-row">
+                <span class="name-label">🌙 P2 NAME:</span>
+                <input type="text" id="p2-name-input" class="name-input p2-input" maxlength="18" placeholder="REIJI" value="REIJI">
+                <button id="reset-p2-name" class="reset-name">RESET</button>
+            </div>
+        </div>
+        
+        <div class="section-label">GAME MODE</div>
+        <div class="mode-selector">
+            <div class="mode-btn active" data-mode="vs-ai">🤖 VS AI</div>
+            <div class="mode-btn" data-mode="vs-player">👥 2 PLAYER</div>
+        </div>
+        
+        <button class="menu-btn" id="start-game-btn">⚔ START GAME</button>
+        
+        <div class="section-label">AI DIFFICULTY</div>
+        <div class="diff-selector">
+            <div data-diff="easy" class="diff-option">🍃 EASY</div>
+            <div data-diff="normal" class="diff-option active">⚡ NORMAL</div>
+            <div data-diff="hard" class="diff-option">🔥 HARD</div>
+            <div data-diff="nightmare" class="diff-option">💀 NIGHTMARE</div>
+        </div>
+        <div class="diff-desc" id="diff-label">Balanced AI — fair reaction speed and damage</div>
+        
+        <div class="footer-hint">BEST OF 3 ROUNDS · 60 SECONDS EACH · M = MUTE</div>
+    </div>
+</div>
+
+<script src="Assets\Script\menu.js"></script>
+</body>
+</html>
