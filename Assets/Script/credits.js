@@ -9,7 +9,7 @@
             if (window.parent !== window) {
                 window.parent.postMessage({ type: 'CLOSE_CREDITS', source: 'credits' }, '*');
             } else {
-                window.location.href = '../../../index.html';
+                window.location.href = '../../index.html';
             }
         }
         
@@ -18,7 +18,7 @@
             if (window.parent !== window) {
                 window.parent.postMessage({ type: 'OPEN_HOWTOPLAY', source: 'credits' }, '*');
             } else {
-                window.location.href = '../index/h2p.html';
+                window.location.href = '../Index/h2p.html';
             }
         }
         
