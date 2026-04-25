@@ -85,7 +85,7 @@ startBtn.addEventListener('click', () => {
     localStorage.setItem('battleArenaSettings', JSON.stringify(settings));
     playSelectSound();
     setTimeout(() => {
-        window.location.href = 'game.html';
+        window.location.href = '../Side-Scroll-Brawler/Assets/Index/game.html';
     }, 100);
 });
 
@@ -93,7 +93,7 @@ startBtn.addEventListener('click', () => {
 howToPlayBtn.addEventListener('click', () => {
     playSelectSound();
     setTimeout(() => {
-        window.location.href = 'Assets\\Index\\h2p.html';
+        window.location.href = '../Side-Scroll-Brawler/Assets/Index/h2p.html';
     }, 100);
 });
 
@@ -101,7 +101,7 @@ howToPlayBtn.addEventListener('click', () => {
 creditsBtn.addEventListener('click', () => {
     playSelectSound();
     setTimeout(() => {
-        window.location.href = 'Assets\\Index\\credits.html';
+        window.location.href = '../Side-Scroll-Brawler/Assets/Index/credits.html';
     }, 100);
 });
 
