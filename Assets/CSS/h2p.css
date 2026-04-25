@@ -309,6 +309,7 @@ body {
   background: rgba(255, 255, 255, 0.1);
   padding: 0.2rem 0.6rem;
   border-radius: 20px;
+  color:white;
 }
 
 .ctrl-group {
@@ -334,6 +335,7 @@ body {
   border: 1px solid #333;
   transition: all 0.2s;
   cursor: pointer;
+  color:white;
 }
 
 .ctrl-btn:hover {
@@ -395,6 +397,7 @@ kbd {
   margin: 1rem 0;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 60px;
+  color:white;
 }
 
 .global-item {
