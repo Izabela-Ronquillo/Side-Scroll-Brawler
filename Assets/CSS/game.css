@@ -38,6 +38,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: clamp(5px, 2vw, 10px);
 }
 
 #wrap {
@@ -48,39 +49,51 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 10px;
+    padding: clamp(5px, 1.5vw, 10px);
+    gap: clamp(5px, 1.5vh, 10px);
 }
 
+/* ========== RESPONSIVE HUD ========== */
 #hud {
     display: grid;
-    grid-template-columns: 1fr 140px 1fr;
-    gap: 10px;
+    grid-template-columns: 1fr clamp(80px, 15vw, 140px) 1fr;
+    gap: clamp(5px, 1.5vw, 10px);
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: clamp(4px, 1vh, 8px);
     background: var(--panel);
-    padding: 10px 18px;
-    border-radius: 12px;
+    padding: clamp(6px, 1.5vh, 10px) clamp(10px, 2vw, 18px);
+    border-radius: clamp(8px, 2vw, 12px);
     border: 1px solid var(--border);
 }
 
 .hud-side {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: clamp(3px, 1vh, 5px);
 }
 
 .hud-side.right {
     align-items: flex-end;
 }
 
+/* Fighter Name */
 .fighter-name {
     font-family: 'Orbitron', monospace;
-    font-size: 12px;
+    font-size: clamp(8px, 1.8vw, 12px);
     font-weight: 900;
-    letter-spacing: 1.5px;
-    padding: 3px 10px;
+    letter-spacing: clamp(1px, 0.3vw, 1.5px);
+    padding: clamp(2px, 0.8vh, 3px) clamp(6px, 1.5vw, 10px);
     border-radius: 20px;
     display: inline-block;
+    white-space: nowrap;
+}
+
+@media (max-width: 550px) {
+    .fighter-name {
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.2;
+    }
 }
 
 .fighter-name.p1 {
@@ -95,15 +108,16 @@ body {
     border: 1px solid rgba(60, 100, 255, 0.4);
 }
 
+/* HP Track */
 .hp-track {
-    height: 22px;
+    height: clamp(12px, 2.5vh, 22px);
     background: #0d0d0d;
     border-radius: 4px;
     overflow: hidden;
     position: relative;
     border: 1px solid #2a2a2a;
     width: 100%;
-    min-width: 180px;
+    min-width: clamp(55px, 15vw, 180px);
 }
 
 .hp-bar {
@@ -132,8 +146,9 @@ body {
     box-shadow: 0 0 10px #2244ff;
 }
 
+/* SP / Super Gauge */
 .sp-track {
-    height: 6px;
+    height: clamp(4px, 1vh, 6px);
     background: #0a0a0a;
     border-radius: 3px;
     overflow: hidden;
@@ -156,7 +171,7 @@ body {
 }
 
 .sp-label {
-    font-size: 9px;
+    font-size: clamp(7px, 1.5vw, 9px);
     letter-spacing: 1px;
     margin-top: 1px;
 }
@@ -170,6 +185,7 @@ body {
     text-align: right;
 }
 
+/* Center HUD */
 .center-hud {
     text-align: center;
 }
@@ -177,7 +193,7 @@ body {
 .timer-box {
     font-family: 'Orbitron', monospace;
     color: var(--gold);
-    font-size: 44px;
+    font-size: clamp(20px, 6vw, 44px);
     font-weight: 900;
     text-shadow: 0 0 16px #ff8800;
     line-height: 1;
@@ -195,7 +211,7 @@ body {
 }
 
 .round-info {
-    font-size: 10px;
+    font-size: clamp(8px, 1.8vw, 10px);
     color: #888;
     letter-spacing: 2px;
     margin-top: 2px;
@@ -203,13 +219,13 @@ body {
 
 .score-row {
     display: flex;
-    gap: 8px;
+    gap: clamp(4px, 1.5vw, 8px);
     margin-top: 3px;
 }
 
 .score-pip {
-    width: 16px;
-    height: 16px;
+    width: clamp(10px, 2vw, 16px);
+    height: clamp(10px, 2vw, 16px);
     border-radius: 50%;
     border: 1px solid #333;
     transition: all 0.15s;
@@ -228,7 +244,7 @@ body {
 }
 
 .super-ready {
-    font-size: 9px;
+    font-size: clamp(7px, 1.5vw, 9px);
     letter-spacing: 2px;
     font-weight: bold;
     opacity: 0;
@@ -253,6 +269,7 @@ body {
     50% { opacity: 0.3; }
 }
 
+/* Canvas */
 canvas {
     display: block;
     width: 100%;
@@ -261,26 +278,29 @@ canvas {
     box-shadow: 0 0 0 2px #1a1a1a, 0 0 40px rgba(0, 0, 0, 0.8);
     background: #000;
     cursor: none;
+    max-height: 70vh;
+    object-fit: contain;
 }
 
+/* Controls Row */
 #controls-row {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    gap: 10px;
-    margin-top: 8px;
+    gap: clamp(5px, 1.5vw, 10px);
+    margin-top: clamp(4px, 1vh, 8px);
     align-items: center;
     background: var(--panel);
-    padding: 8px 14px;
+    padding: clamp(5px, 1vh, 8px) clamp(8px, 1.5vw, 14px);
     border-radius: 8px;
     border: 1px solid var(--border);
 }
 
 .ctrl-block {
-    font-size: 10px;
+    font-size: clamp(7px, 1.8vw, 10px);
     color: #777;
     line-height: 1.9;
     background: rgba(15, 12, 25, 0.8);
-    padding: 6px 12px;
+    padding: clamp(4px, 1vh, 6px) clamp(6px, 1.5vw, 12px);
     border-radius: 6px;
 }
 
@@ -295,16 +315,16 @@ canvas {
     background: #1a1a2a;
     border: 1px solid #444;
     color: #ccc;
-    padding: 1px 5px;
+    padding: clamp(1px, 0.5vh, 1px) clamp(3px, 1vw, 5px);
     border-radius: 3px;
-    font-size: 9px;
+    font-size: clamp(7px, 1.5vw, 9px);
     margin: 0 1px;
 }
 
 #ctrl-center {
     text-align: center;
     display: flex;
-    gap: 10px;
+    gap: clamp(5px, 1.5vw, 10px);
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -313,9 +333,9 @@ button {
     background: #0f0f1a;
     border: 1px solid #ffcc44;
     color: #ffcc44;
-    padding: 7px 16px;
+    padding: clamp(4px, 1vh, 7px) clamp(8px, 2vw, 16px);
     border-radius: 6px;
-    font-size: 11px;
+    font-size: clamp(8px, 1.8vw, 11px);
     font-family: 'Share Tech Mono', monospace;
     cursor: pointer;
     font-weight: bold;
@@ -342,16 +362,17 @@ button:hover {
 
 #combo-log {
     font-family: 'Orbitron', monospace;
-    font-size: 12px;
+    font-size: clamp(9px, 2vw, 12px);
     color: #ffaa44;
     text-align: center;
-    min-height: 20px;
+    min-height: clamp(16px, 3vh, 20px);
     letter-spacing: 2px;
     font-weight: bold;
     text-shadow: 0 0 6px #ff6600;
     transition: all 0.1s;
 }
 
+/* Notifications */
 #notif, #vol-indicator {
     position: fixed;
     left: 50%;
@@ -367,25 +388,35 @@ button:hover {
 }
 
 #notif {
-    top: 20px;
-    font-size: 13px;
+    top: clamp(10px, 3vh, 20px);
+    font-size: clamp(10px, 2vw, 13px);
     color: #ffcc44;
     letter-spacing: 2px;
     text-shadow: 0 0 8px #ff8800;
-    padding: 6px 18px;
+    padding: clamp(4px, 1vh, 6px) clamp(10px, 2.5vw, 18px);
     opacity: 0;
+    white-space: nowrap;
+}
+
+@media (max-width: 550px) {
+    #notif {
+        white-space: normal;
+        font-size: 10px;
+        max-width: 90%;
+        text-align: center;
+    }
 }
 
 #vol-indicator {
-    top: 60px;
-    font-size: 10px;
+    top: clamp(50px, 8vh, 60px);
+    font-size: clamp(8px, 1.8vw, 10px);
     color: #aa88cc;
     letter-spacing: 1px;
-    padding: 4px 14px;
+    padding: clamp(3px, 0.8vh, 4px) clamp(8px, 2vw, 14px);
     opacity: 0;
 }
 
-/* Character Select */
+/* ========== CHARACTER SELECT RESPONSIVE ========== */
 #char-select {
     position: fixed;
     top: 0;
@@ -400,6 +431,7 @@ button:hover {
     align-items: center;
     font-family: 'Share Tech Mono', monospace;
     overflow-y: auto;
+    padding: clamp(10px, 3vh, 20px);
 }
 
 #char-select.visible {
@@ -407,48 +439,61 @@ button:hover {
 }
 
 .cs-wrap {
-    width: 92%;
-    max-width: 960px;
+    width: 95%;
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    padding: 20px 0;
+    gap: clamp(10px, 2vh, 14px);
+    padding: clamp(10px, 2vh, 20px) 0;
 }
 
 .cs-title {
     font-family: 'Orbitron', monospace;
     text-align: center;
-    font-size: 26px;
+    font-size: clamp(18px, 5vw, 26px);
     font-weight: 900;
     color: #ffdd88;
-    letter-spacing: 4px;
+    letter-spacing: clamp(2px, 1vw, 4px);
 }
 
 .cs-subtitle {
     text-align: center;
-    font-size: 11px;
+    font-size: clamp(9px, 2.5vw, 11px);
     color: #886699;
-    letter-spacing: 3px;
+    letter-spacing: clamp(2px, 0.8vw, 3px);
     margin-top: 3px;
 }
 
 .cs-main {
     display: grid;
-    grid-template-columns: 160px 1fr 160px;
-    gap: 12px;
+    grid-template-columns: minmax(100px, 160px) 1fr minmax(100px, 160px);
+    gap: clamp(8px, 2vw, 12px);
     align-items: start;
+}
+
+@media (max-width: 700px) {
+    .cs-main {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .cs-preview {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
 }
 
 .cs-preview {
     background: rgba(10, 8, 20, 0.9);
     border-radius: 10px;
-    padding: 14px;
+    padding: clamp(10px, 2vh, 14px);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 6px;
     border: 1px solid rgba(255, 200, 80, 0.15);
-    min-height: 200px;
+    min-height: auto;
 }
 
 .cs-preview.p1-side {
@@ -460,7 +505,7 @@ button:hover {
 }
 
 .cs-preview-label {
-    font-size: 9px;
+    font-size: clamp(8px, 2vw, 9px);
     letter-spacing: 3px;
     margin-bottom: 2px;
 }
@@ -474,26 +519,26 @@ button:hover {
 }
 
 .cs-char-portrait {
-    width: 80px;
-    height: 96px;
+    width: clamp(60px, 12vw, 80px);
+    height: clamp(72px, 15vw, 96px);
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 44px;
+    font-size: clamp(32px, 7vw, 44px);
     margin: 2px 0;
 }
 
 .cs-char-name {
     font-family: 'Orbitron', monospace;
-    font-size: 11px;
+    font-size: clamp(9px, 2vw, 11px);
     font-weight: 900;
     letter-spacing: 1px;
     text-align: center;
 }
 
 .cs-char-title {
-    font-size: 8px;
+    font-size: clamp(7px, 1.8vw, 8px);
     letter-spacing: 2px;
     opacity: 0.7;
     text-align: center;
@@ -512,7 +557,7 @@ button:hover {
 }
 
 .cs-stat-label {
-    font-size: 8px;
+    font-size: clamp(7px, 1.8vw, 8px);
     color: #888;
     width: 26px;
     letter-spacing: 1px;
@@ -534,15 +579,27 @@ button:hover {
 
 .cs-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 100px), 1fr));
+    gap: clamp(6px, 1.5vw, 8px);
+}
+
+@media (max-width: 700px) {
+    .cs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .cs-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .cs-card {
     background: rgba(8, 6, 18, 0.9);
     border: 2px solid rgba(255, 200, 80, 0.1);
     border-radius: 10px;
-    padding: 10px;
+    padding: clamp(8px, 1.5vh, 10px);
     cursor: pointer;
     transition: all 0.18s;
     text-align: center;
@@ -569,20 +626,20 @@ button:hover {
 }
 
 .cs-card-icon {
-    font-size: 28px;
+    font-size: clamp(22px, 5vw, 28px);
     margin-bottom: 3px;
     display: block;
 }
 
 .cs-card-name {
     font-family: 'Orbitron', monospace;
-    font-size: 9px;
+    font-size: clamp(8px, 1.8vw, 9px);
     font-weight: 900;
     letter-spacing: 1px;
 }
 
 .cs-card-title {
-    font-size: 7px;
+    font-size: clamp(6px, 1.5vw, 7px);
     letter-spacing: 2px;
     opacity: 0.6;
     margin-top: 2px;
@@ -597,7 +654,7 @@ button:hover {
 }
 
 .cs-badge {
-    font-size: 7px;
+    font-size: clamp(6px, 1.5vw, 7px);
     padding: 2px 5px;
     border-radius: 3px;
     letter-spacing: 1px;
@@ -607,14 +664,15 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: clamp(10px, 3vw, 16px);
     flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 .cs-select-turn {
-    font-size: 10px;
+    font-size: clamp(9px, 2vw, 10px);
     letter-spacing: 2px;
-    padding: 7px 16px;
+    padding: clamp(5px, 1.5vh, 7px) clamp(10px, 2vw, 16px);
     border-radius: 6px;
     font-weight: bold;
 }
@@ -633,9 +691,9 @@ button:hover {
 
 .cs-fight-btn {
     font-family: 'Orbitron', monospace;
-    font-size: 18px;
+    font-size: clamp(14px, 4vw, 18px);
     font-weight: 900;
-    padding: 12px 36px;
+    padding: clamp(8px, 2vh, 12px) clamp(20px, 5vw, 36px);
     border-radius: 8px;
     letter-spacing: 3px;
     background: rgba(10, 8, 16, 0.9);
@@ -654,35 +712,164 @@ button:hover {
 }
 
 .cs-back-btn {
-    font-size: 10px;
-    padding: 8px 16px;
+    font-size: clamp(9px, 2vw, 10px);
+    padding: clamp(6px, 1.5vh, 8px) clamp(12px, 3vw, 16px);
     border-color: #6644aa;
     color: #9966cc;
     background: rgba(15, 10, 25, 0.8);
 }
 
-@media (max-width: 700px) {
-    .fighter-name {
-        font-size: 9px;
+/* ========== RESPONSIVE BREAKPOINTS ========== */
+
+/* Tablet */
+@media (max-width: 900px) {
+    #controls-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
     }
+    
+    .ctrl-block {
+        text-align: center !important;
+    }
+    
+    #ctrl-center {
+        order: -1;
+    }
+}
+
+/* Mobile Landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+    #wrap {
+        max-height: 98vh;
+        gap: 5px;
+    }
+    
+    .fighter-name {
+        font-size: 8px;
+    }
+    
     .timer-box {
         font-size: 28px;
     }
+    
     .hp-track {
-        height: 16px;
-        min-width: 80px;
+        height: 14px;
+        min-width: 100px;
     }
+    
     .ctrl-block {
+        font-size: 7px;
+        padding: 4px 8px;
+    }
+    
+    button {
+        padding: 3px 8px;
         font-size: 8px;
     }
-    button {
-        padding: 5px 10px;
+}
+
+/* Small Mobile */
+@media (max-width: 550px) {
+    #hud {
+        grid-template-columns: 1fr 80px 1fr;
+        gap: 6px;
+        padding: 6px 10px;
+    }
+    
+    .hp-track {
+        min-width: 70px;
+        height: 14px;
+    }
+    
+    .timer-box {
+        font-size: 24px;
+    }
+    
+    .round-info {
+        font-size: 8px;
+    }
+    
+    #combo-log {
         font-size: 9px;
+        min-height: 16px;
     }
-    .cs-main {
-        grid-template-columns: 110px 1fr 110px;
+    
+    .sp-label, .super-ready {
+        font-size: 7px;
     }
-    .cs-grid {
-        grid-template-columns: repeat(2, 1fr);
+    
+    .score-pip {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* Very Small Mobile */
+@media (max-width: 380px) {
+    .hp-track {
+        min-width: 55px;
+        height: 12px;
+    }
+    
+    .timer-box {
+        font-size: 20px;
+    }
+    
+    .fighter-name {
+        font-size: 7px;
+    }
+    
+    .ctrl-key {
+        font-size: 6px;
+        padding: 1px 3px;
+    }
+    
+    .ctrl-block {
+        font-size: 6px;
+    }
+    
+    button {
+        font-size: 7px;
+        padding: 3px 6px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    button, .cs-card, .ctrl-key, .fighter-card {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    button:active, .cs-card:active {
+        transform: scale(0.97);
+    }
+}
+
+/* High Resolution Screens */
+@media (min-width: 1920px) {
+    #wrap {
+        max-width: 1600px;
+    }
+    
+    .fighter-name {
+        font-size: 14px;
+    }
+    
+    .timer-box {
+        font-size: 52px;
+    }
+    
+    .hp-track {
+        height: 26px;
+    }
+    
+    .ctrl-block {
+        font-size: 12px;
+    }
+    
+    button {
+        font-size: 13px;
+        padding: 8px 20px;
     }
 }
