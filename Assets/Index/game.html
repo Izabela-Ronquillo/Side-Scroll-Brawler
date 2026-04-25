@@ -2,9 +2,196 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>BATTLE ARENA — FIGHT!</title>
     <link rel="stylesheet" href="../CSS/game.css">
+    <style>
+        /* Additional responsive overrides for game layout */
+        @media (max-width: 768px) {
+            #game-container {
+                padding: 5px;
+            }
+            
+            #wrap {
+                gap: 5px;
+            }
+            
+            #hud {
+                gap: 5px;
+                padding: 6px 10px;
+            }
+            
+            .hp-track {
+                height: 18px;
+                min-width: 100px;
+            }
+            
+            .sp-track {
+                height: 5px;
+            }
+            
+            .timer-box {
+                font-size: 32px;
+            }
+            
+            .fighter-name {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
+            
+            .ctrl-block {
+                font-size: 8px;
+                padding: 4px 8px;
+            }
+            
+            .ctrl-key {
+                font-size: 8px;
+                padding: 1px 4px;
+            }
+            
+            button {
+                padding: 4px 8px;
+                font-size: 9px;
+            }
+            
+            .score-pip {
+                width: 12px;
+                height: 12px;
+            }
+            
+            .super-ready {
+                font-size: 8px;
+            }
+            
+            .sp-label {
+                font-size: 8px;
+            }
+            
+            .round-info {
+                font-size: 9px;
+            }
+            
+            #combo-log {
+                font-size: 10px;
+                min-height: 16px;
+            }
+        }
+        
+        @media (max-width: 550px) {
+            #hud {
+                grid-template-columns: 1fr 80px 1fr;
+            }
+            
+            .hp-track {
+                min-width: 70px;
+                height: 14px;
+            }
+            
+            .timer-box {
+                font-size: 24px;
+            }
+            
+            .fighter-name {
+                font-size: 8px;
+                white-space: normal;
+                word-break: break-word;
+                line-height: 1.2;
+            }
+            
+            .ctrl-block {
+                font-size: 7px;
+            }
+            
+            .ctrl-key {
+                font-size: 7px;
+                padding: 1px 3px;
+            }
+            
+            button {
+                padding: 3px 6px;
+                font-size: 8px;
+            }
+            
+            #controls-row {
+                grid-template-columns: 1fr;
+                gap: 6px;
+                text-align: center;
+            }
+            
+            .ctrl-block {
+                text-align: center !important;
+            }
+            
+            #ctrl-center {
+                order: -1;
+                margin-bottom: 4px;
+            }
+            
+            .score-pip {
+                width: 10px;
+                height: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hp-track {
+                min-width: 55px;
+                height: 12px;
+            }
+            
+            .timer-box {
+                font-size: 20px;
+            }
+            
+            .fighter-name {
+                font-size: 7px;
+            }
+            
+            .super-ready, .sp-label {
+                font-size: 7px;
+            }
+        }
+        
+        /* Landscape mode on mobile */
+        @media (max-width: 900px) and (orientation: landscape) {
+            body {
+                padding: 5px;
+            }
+            
+            #wrap {
+                gap: 3px;
+            }
+            
+            .fighter-name {
+                font-size: 8px;
+            }
+            
+            .timer-box {
+                font-size: 28px;
+            }
+            
+            .hp-track {
+                height: 12px;
+            }
+            
+            .ctrl-block {
+                font-size: 7px;
+                padding: 3px 6px;
+            }
+        }
+        
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            button, .ctrl-key, .cs-card, .fighter-card {
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            button:active {
+                transform: scale(0.97);
+            }
+        }
+    </style>
 </head>
 <body>
 <div id="game-container">
@@ -14,7 +201,7 @@
                 <div class="fighter-name p1" id="p1-name-display">⚡ KAZUYA · IRON FIST</div>
                 <div class="hp-track"><div class="hp-bar p1" id="hp1" style="width:100%"></div></div>
                 <div class="sp-track"><div class="sp-bar p1" id="sp1" style="width:0%"></div></div>
-                <div style="display:flex;justify-content:space-between;align-items:center">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;">
                     <div class="sp-label p1">SUPER GAUGE</div>
                     <div class="super-ready p1" id="super1">⚡ READY</div>
                 </div>
@@ -29,7 +216,7 @@
                 <div class="fighter-name p2" id="p2-name-display">SHADOW MONK · REIJI 🌑</div>
                 <div class="hp-track"><div class="hp-bar p2" id="hp2" style="width:100%"></div></div>
                 <div class="sp-track"><div class="sp-bar p2" id="sp2" style="width:0%"></div></div>
-                <div style="display:flex;justify-content:space-between;align-items:center">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;">
                     <div class="super-ready p2" id="super2">READY ✦</div>
                     <div class="sp-label p2">SUPER GAUGE</div>
                 </div>
