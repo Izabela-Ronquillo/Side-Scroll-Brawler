@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>BATTLE ARENA — HOW TO PLAY</title>
+  <link rel="stylesheet" href="../CSS/h2p.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Animated background -->
+  <div class="bg-animation">
+    <div class="grid-overlay"></div>
+    <div class="glow-orb orb1"></div>
+    <div class="glow-orb orb2"></div>
+    <div class="glow-orb orb3"></div>
+  </div>
+
+  <div class="guide-container">
+    <div class="guide">
+      <!-- Header with VS style -->
+      <div class="header">
+        <div class="vs-divider">
+          <span class="vs-left">BATTLE</span>
+          <span class="vs-center">⚔️</span>
+          <span class="vs-right">ARENA</span>
+        </div>
+        <div class="header-stats">
+          <span>✦ ULTIMATE FIGHTERS ✦</span>
+        </div>
+      </div>
+
+      <!-- Quick info banner -->
+      <div class="info-banner">
+        <div class="info-item"><span>🎮</span> BEST OF 3 ROUNDS</div>
+        <div class="info-item"><span>⏱️</span> 60 SECONDS PER ROUND</div>
+        <div class="info-item"><span>⚡</span> SUPER GAUGE SYSTEM</div>
+      </div>
+
+      <div class="content">
+        <!-- MODES SECTION -->
+        <div class="section-title">
+          <div class="title-icon">🎯</div>
+          <h2>GAME MODES</h2>
+          <div class="title-line"></div>
+        </div>
+        <div class="modes-grid">
+          <div class="mode-card mode-ai">
+            <div class="mode-icon">🤖</div>
+            <h3>VS AI</h3>
+            <p>Battle against computer opponents with <strong>4 difficulty levels</strong>: Easy → Normal → Hard → Nightmare</p>
+            <div class="difficulty-bar">
+              <span>EASY</span><span>NORMAL</span><span>HARD</span><span>NIGHTMARE</span>
+            </div>
+          </div>
+          <div class="mode-card mode-pvp">
+            <div class="mode-icon">👥</div>
+            <h3>2 PLAYER</h3>
+            <p>Challenge a friend on the same keyboard. True fighting game experience!</p>
+          </div>
+        </div>
+
+        <!-- CONTROLS SECTION -->
+        <div class="section-title">
+          <div class="title-icon">🎮</div>
+          <h2>CONTROLS</h2>
+          <div class="title-line"></div>
+        </div>
+
+        <div class="controls-wrapper">
+          <!-- Player 1 -->
+          <div class="player-controls p1-controls">
+            <div class="player-badge">
+              <span class="player-icon">🔥</span>
+              <span class="player-name">PLAYER 1</span>
+              <span class="player-side">LEFT</span>
+            </div>
+            <div class="ctrl-group">
+              <div class="ctrl-row">
+                <div class="ctrl-btn"><kbd>A</kbd><span>← MOVE</span></div>
+                <div class="ctrl-btn"><kbd>D</kbd><span>MOVE →</span></div>
+                <div class="ctrl-btn"><kbd>W</kbd><span>JUMP</span></div>
+                <div class="ctrl-btn"><kbd>S</kbd><span>BLOCK</span></div>
+              </div>
+              <div class="ctrl-row">
+                <div class="ctrl-btn attack"><kbd>R</kbd><span>💥 PUNCH</span></div>
+                <div class="ctrl-btn attack"><kbd>T</kbd><span>🦶 KICK</span></div>
+                <div class="ctrl-btn super"><kbd>E</kbd><span>🌟 SUPER</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VS Divider -->
+          <div class="vs-divider-small">VS</div>
+
+          <!-- Player 2 -->
+          <div class="player-controls p2-controls">
+            <div class="player-badge">
+              <span class="player-icon">🌀</span>
+              <span class="player-name">PLAYER 2</span>
+              <span class="player-side">RIGHT</span>
+            </div>
+            <div class="ctrl-group">
+              <div class="ctrl-row">
+                <div class="ctrl-btn"><kbd>←</kbd><span>← MOVE</span></div>
+                <div class="ctrl-btn"><kbd>→</kbd><span>MOVE →</span></div>
+                <div class="ctrl-btn"><kbd>↑</kbd><span>JUMP</span></div>
+                <div class="ctrl-btn"><kbd>↓</kbd><span>BLOCK</span></div>
+              </div>
+              <div class="ctrl-row">
+                <div class="ctrl-btn attack"><kbd>O</kbd><span>💥 PUNCH</span></div>
+                <div class="ctrl-btn attack"><kbd>P</kbd><span>🦶 KICK</span></div>
+                <div class="ctrl-btn super"><kbd>[</kbd><span>🌟 SUPER</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GLOBAL CONTROLS -->
+        <div class="global-controls">
+          <div class="global-item"><kbd>M</kbd> <span>🔊 Mute SFX</span></div>
+          <div class="global-item"><kbd>ESC</kbd> <span>⚡ Back to Game</span></div>
+          <div class="global-item"><span class="badge-gold">⚡ SUPER READY = 100% Gauge</span></div>
+        </div>
+
+        <!-- CHARACTER ROSTER -->
+        <div class="section-title">
+          <div class="title-icon">⚔️</div>
+          <h2>FIGHTER ROSTER</h2>
+          <div class="title-line"></div>
+        </div>
+
+        <div class="roster">
+          <div class="fighter-card" data-fighter="kazuya">
+            <div class="fighter-avatar">🔥</div>
+            <div class="fighter-info">
+              <div class="fighter-name">KAZUYA</div>
+              <div class="fighter-title">IRON FIST</div>
+              <div class="fighter-stats">
+                <span class="stat pow">⚡ 7</span>
+                <span class="stat spd">💨 6</span>
+                <span class="stat def">🛡️ 6</span>
+              </div>
+            </div>
+          </div>
+          <div class="fighter-card" data-fighter="reiji">
+            <div class="fighter-avatar">🌑</div>
+            <div class="fighter-info">
+              <div class="fighter-name">REIJI</div>
+              <div class="fighter-title">SHADOW MONK</div>
+              <div class="fighter-stats">
+                <span class="stat pow">⚡ 5</span>
+                <span class="stat spd">💨 9</span>
+                <span class="stat def">🛡️ 4</span>
+              </div>
+            </div>
+          </div>
+          <div class="fighter-card" data-fighter="sakura">
+            <div class="fighter-avatar">🌸</div>
+            <div class="fighter-info">
+              <div class="fighter-name">SAKURA</div>
+              <div class="fighter-title">WIND DANCER</div>
+              <div class="fighter-stats">
+                <span class="stat pow">⚡ 4</span>
+                <span class="stat spd">💨 10</span>
+                <span class="stat def">🛡️ 3</span>
+              </div>
+            </div>
+          </div>
+          <div class="fighter-card" data-fighter="darius">
+            <div class="fighter-avatar">⚙️</div>
+            <div class="fighter-info">
+              <div class="fighter-name">DARIUS</div>
+              <div class="fighter-title">STEEL TITAN</div>
+              <div class="fighter-stats">
+                <span class="stat pow">⚡ 10</span>
+                <span class="stat spd">💨 2</span>
+                <span class="stat def">🛡️ 10</span>
+              </div>
+            </div>
+          </div>
+          <div class="fighter-card" data-fighter="lyra">
+            <div class="fighter-avatar">⚡</div>
+            <div class="fighter-info">
+              <div class="fighter-name">LYRA</div>
+              <div class="fighter-title">STORM MAGE</div>
+              <div class="fighter-stats">
+                <span class="stat pow">⚡ 9</span>
+                <span class="stat spd">💨 5</span>
+                <span class="stat def">🛡️ 4</span>
+              </div>
+            </div>
+          </div>
+          <div class="fighter-card" data-fighter="kira">
+            <div class="fighter-avatar">👻</div>
+            <div class="fighter-info">
+              <div class="fighter-name">KIRA</div>
+              <div class="fighter-title">VOID PHANTOM</div>
+              <div class="fighter-stats">
+                <span class="stat pow">⚡ 7</span>
+                <span class="stat spd">💨 8</span>
+                <span class="stat def">🛡️ 2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TIPS SECTION -->
+        <div class="tips-section">
+          <div class="tip-card">
+            <div class="tip-icon">💥</div>
+            <div class="tip-content">
+              <h4>COMBO SYSTEM</h4>
+              <p>Land rapid hits to build combo counter. Higher combos = more pressure!</p>
+            </div>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">🛡️</div>
+            <div class="tip-content">
+              <h4>BLOCKING</h4>
+              <p>Hold block to reduce damage and build SUPER GAUGE. Don't block forever!</p>
+            </div>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">🌟</div>
+            <div class="tip-content">
+              <h4>SUPER ATTACK</h4>
+              <p>When gauge is 100%, press SUPER button. Guard break + invincible frames!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTION BUTTON -->
+        <div class="action-area">
+          <button id="vibeBtn" class="fight-button">
+            <span class="btn-text">⚔️ RETURN TO ARENA ⚔️</span>
+            <span class="btn-glow"></span>
+          </button>
+        </div>
+
+        <div class="footer">
+          <span>SELECT FIGHTERS → CUSTOM NAMES → FIGHT!</span>
+          <span>✦ PRESS M TOGGLE SFX IN-GAME ✦</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../Script/h2p.js"></script>
+</body>
+</html>
