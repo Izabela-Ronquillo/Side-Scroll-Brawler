@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&family=Orbitron:wght@700;900&family=Share+Tech+Mono&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    background: #050508;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Share Tech Mono', monospace;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.96);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.menu-panel {
+    background: linear-gradient(160deg, #0a0a14, #040408);
+    border: 1px solid rgba(255, 200, 60, 0.4);
+    border-radius: 16px;
+    padding: 36px 44px;
+    text-align: center;
+    max-width: 540px;
+    width: 88%;
+    box-shadow: 0 0 80px rgba(255, 180, 0, 0.1), inset 0 1px 0 rgba(255, 200, 80, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 200, 60, 0.6), transparent);
+}
+
+.menu-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 34px;
+    font-weight: 900;
+    color: #ffdd88;
+    text-shadow: 0 0 20px rgba(255, 140, 40, 0.6);
+    letter-spacing: 4px;
+    margin-bottom: 4px;
+}
+
+.menu-vs {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    color: #8866bb;
+    letter-spacing: 6px;
+    border-bottom: 1px solid #2a1a44;
+    padding-bottom: 8px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.name-editor {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    padding: 12px 18px;
+    margin: 10px 0 8px;
+    border: 1px solid rgba(255, 200, 80, 0.25);
+}
+
+.name-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.name-row:last-child {
+    margin-bottom: 0;
+}
+
+.name-label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #ffaa66;
+    letter-spacing: 1px;
+    width: 65px;
+    text-align: left;
+}
+
+.name-input {
+    flex: 1;
+    background: #0a0a14;
+    border: 1px solid #ff8844;
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    color: #ffcc88;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.12s;
+}
+
+.name-input:focus {
+    outline: none;
+    border-color: #ffaa44;
+    box-shadow: 0 0 12px rgba(255, 170, 68, 0.4);
+    background: #0f0f1c;
+}
+
+.name-input.p2-input {
+    border-color: #8866ff;
+}
+
+.name-input.p2-input:focus {
+    border-color: #aa88ff;
+    box-shadow: 0 0 12px rgba(136, 102, 255, 0.4);
+}
+
+.reset-name {
+    background: #1a1020;
+    border-color: #6644aa;
+    color: #aa88ff;
+    padding: 4px 10px;
+    font-size: 9px;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Share Tech Mono', monospace;
+    transition: all 0.12s;
+}
+
+.reset-name:hover {
+    background: #2a1840;
+    box-shadow: 0 0 8px rgba(136, 102, 255, 0.4);
+}
+
+.section-label {
+    font-size: 10px;
+    color: #ffaa66;
+    letter-spacing: 3px;
+    margin: 14px 0 8px;
+    text-transform: uppercase;
+}
+
+.diff-selector {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+}
+
+.diff-option {
+    background: #0d0d1c;
+    border: 1px solid #5533aa;
+    color: #9977cc;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 10px;
+    letter-spacing: 1px;
+    transition: 0.12s;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.diff-option.active {
+    background: #7733cc;
+    color: white;
+    border-color: #cc99ff;
+    box-shadow: 0 0 12px rgba(140, 80, 255, 0.4);
+}
+
+.diff-option:hover:not(.active) {
+    background: #221133;
+    color: #ccaaff;
+}
+
+.diff-desc {
+    font-size: 10px;
+    color: #885588;
+    margin-top: 6px;
+    min-height: 16px;
+}
+
+.mode-selector {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.mode-btn {
+    background: #0d0d1c;
+    border: 1px solid #445588;
+    color: #7799cc;
+    padding: 7px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 10px;
+    letter-spacing: 1px;
+    transition: 0.12s;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.mode-btn.active {
+    background: #224488;
+    color: white;
+    border-color: #88bbff;
+    box-shadow: 0 0 10px rgba(80, 140, 255, 0.3);
+}
+
+.mode-btn:hover:not(.active) {
+    background: #1a3366;
+    color: #bbddff;
+}
+
+.menu-btn {
+    display: block;
+    width: 100%;
+    background: #0e0e1c;
+    border: 1px solid #ff8844;
+    color: #ffbb88;
+    font-family: 'Orbitron', monospace;
+    font-size: 16px;
+    padding: 13px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.12s;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.menu-btn:hover {
+    background: #ff8844;
+    color: #0a0a0f;
+    box-shadow: 0 0 24px rgba(255, 140, 60, 0.5);
+    transform: translateY(-1px);
+}
+
+.menu-btn.secondary {
+    border-color: #8844bb;
+    color: #bb88ff;
+    font-size: 13px;
+    padding: 10px;
+}
+
+.menu-btn.secondary:hover {
+    background: #8844bb;
+    color: white;
+    box-shadow: 0 0 16px rgba(140, 80, 255, 0.4);
+}
+
+.menu-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.menu-buttons .menu-btn {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.footer-hint {
+    font-size: 9px;
+    color: #3a2a4a;
+    margin-top: 14px;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 700px) {
+    .menu-panel {
+        padding: 24px 20px;
+    }
+    .menu-title {
+        font-size: 24px;
+    }
+    .name-row {
+        flex-wrap: wrap;
+    }
+    .name-label {
+        width: 100%;
+        text-align: center;
+    }
+    .menu-buttons {
+        flex-direction: column;
+    }
+}
