@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>BATTLE ARENA — FIGHT!</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+<div id="game-container">
+    <div id="wrap">
+        <div id="hud">
+            <div class="hud-side left">
+                <div class="fighter-name p1" id="p1-name-display">⚡ KAZUYA · IRON FIST</div>
+                <div class="hp-track"><div class="hp-bar p1" id="hp1" style="width:100%"></div></div>
+                <div class="sp-track"><div class="sp-bar p1" id="sp1" style="width:0%"></div></div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                    <div class="sp-label p1">SUPER GAUGE</div>
+                    <div class="super-ready p1" id="super1">⚡ READY</div>
+                </div>
+                <div class="score-row" id="score1"></div>
+            </div>
+            <div class="center-hud">
+                <div class="timer-box" id="timer">60</div>
+                <div class="round-info" id="round-label">ROUND 1</div>
+                <div id="combo-log">· · ·</div>
+            </div>
+            <div class="hud-side right">
+                <div class="fighter-name p2" id="p2-name-display">SHADOW MONK · REIJI 🌑</div>
+                <div class="hp-track"><div class="hp-bar p2" id="hp2" style="width:100%"></div></div>
+                <div class="sp-track"><div class="sp-bar p2" id="sp2" style="width:0%"></div></div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                    <div class="super-ready p2" id="super2">READY ✦</div>
+                    <div class="sp-label p2">SUPER GAUGE</div>
+                </div>
+                <div class="score-row" id="score2"></div>
+            </div>
+        </div>
+
+        <canvas id="gc" width="1100" height="560"></canvas>
+
+        <div id="controls-row">
+            <div class="ctrl-block">
+                <span id="p1-control-name">⚡ P1</span><br>
+                <span class="ctrl-key">A</span><span class="ctrl-key">D</span> move &nbsp;
+                <span class="ctrl-key">W</span> jump &nbsp;
+                <span class="ctrl-key">S</span> block<br>
+                <span class="ctrl-key">R</span> punch &nbsp;
+                <span class="ctrl-key">T</span> kick &nbsp;
+                <span class="ctrl-key">E</span> SUPER
+            </div>
+            <div id="ctrl-center">
+                <button id="newbattle">⚡ NEW BATTLE</button>
+                <button id="menu-btn">☰ MENU</button>
+                <button id="ai-toggle">🤖 AI: ON</button>
+                <button id="vol-btn">🔊 SFX</button>
+            </div>
+            <div class="ctrl-block" style="text-align:right">
+                <span id="p2-control-name">🌀 P2</span><br>
+                <span class="ctrl-key">←</span><span class="ctrl-key">→</span> move &nbsp;
+                <span class="ctrl-key">↑</span> jump &nbsp;
+                <span class="ctrl-key">↓</span> block<br>
+                <span class="ctrl-key">O</span> punch &nbsp;
+                <span class="ctrl-key">P</span> kick &nbsp;
+                <span class="ctrl-key">[</span> SUPER
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="notif"></div>
+<div id="vol-indicator"></div>
+
+<div id="char-select">
+    <div class="cs-wrap">
+        <div>
+            <div class="cs-title">SELECT FIGHTER</div>
+            <div class="cs-subtitle" id="cs-turn-label">P1 — CLICK YOUR FIGHTER</div>
+        </div>
+        <div class="cs-main">
+            <div class="cs-preview p1-side" id="cs-p1-preview">
+                <div class="cs-preview-label p1">◀ PLAYER 1</div>
+                <div class="cs-char-portrait" id="cs-p1-portrait">?</div>
+                <div class="cs-char-name" id="cs-p1-name">— SELECT —</div>
+                <div class="cs-char-title" id="cs-p1-title"></div>
+                <div class="cs-stats" id="cs-p1-stats"></div>
+                <div class="cs-char-desc" id="cs-p1-desc"></div>
+            </div>
+            <div class="cs-grid" id="cs-grid"></div>
+            <div class="cs-preview p2-side" id="cs-p2-preview">
+                <div class="cs-preview-label p2">PLAYER 2 ▶</div>
+                <div class="cs-char-portrait" id="cs-p2-portrait">?</div>
+                <div class="cs-char-name" id="cs-p2-name">— SELECT —</div>
+                <div class="cs-char-title" id="cs-p2-title"></div>
+                <div class="cs-stats" id="cs-p2-stats"></div>
+                <div class="cs-char-desc" id="cs-p2-desc"></div>
+            </div>
+        </div>
+        <div class="cs-footer">
+            <button class="cs-back-btn" id="cs-back-btn">← BACK</button>
+            <div class="cs-select-turn p1" id="cs-turn-indicator">◀ P1 SELECTING</div>
+            <button class="cs-fight-btn" id="cs-fight-btn">⚔ FIGHT!</button>
+        </div>
+    </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
